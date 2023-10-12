@@ -1,13 +1,19 @@
+/**
+ * Import necessary dependencies from external libraries and components
+ */
 import { useFormik } from "formik";
 import { Button, Form } from "react-bootstrap";
 import { useAppDispatch } from "../../app/hooks";
 import { addNote } from "./noteSlice";
 
-interface Props {}
-
-const CreateNotes = (props: Props) => {
+const CreateNotes = () => {
+  /**
+   * Constants
+   */
   const dispatch = useAppDispatch();
-
+  /**
+   *  Initialize the formik form for note creation
+   */
   const formik = useFormik({
     initialValues: {
       title: "",
