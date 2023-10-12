@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { Note } from "../../models/note.model";
-import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import { Note } from "../../models/note.model";
 interface Props {
   note: Note;
   handleDelete: (id: string) => void;

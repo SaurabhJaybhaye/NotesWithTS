@@ -1,15 +1,15 @@
-import React from "react";
-import { Note } from "../../models/note.model";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import Notes from "./Notes";
+import { deleteNote, selectNotes } from "./noteSlice";
 
-interface Props {
-  notes: Note[];
-  setNotes: React.Dispatch<React.SetStateAction<Note[]>>;
-}
+interface Props {}
+const NotesList = (props: Props) => {
+  const allNotes = useAppSelector(selectNotes);
+  const notes = allNotes.notes;
+  const dispatch = useAppDispatch();
 
-const NotesList = ({ notes, setNotes }: Props) => {
-  const handleDelete = (id: string) => {
-    setNotes(notes.filter((note) => note.id !== id));
+  const handleDelete = (noteId: string) => {
+    dispatch(deleteNote(noteId));
   };
 
   const renderNotes = (): JSX.Element[] => {
