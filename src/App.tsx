@@ -15,8 +15,7 @@ function App() {
           <Col>
             <NotesList />
           </Col>
-        </Row>
-        <Row>
+          <Col xs={1}></Col>
           <Col>
             <CreateNotes />
           </Col>
