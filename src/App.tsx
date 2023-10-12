@@ -1,57 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Header from "./components/header/Header";
+import { Container } from "react-bootstrap";
+import NotesList from "./components/notes/NotesList";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { Note } from "./models/note.model";
+import React, { useState } from "react";
+import CreateNotes from "./components/notes/CreateNotes";
 
 function App() {
+  const [notes, setNotes] = useState<Note[]>([
+    {
+      id: new Date().toString(),
+      title: "Meetings",
+      text: "Testing",
+      color: "#F7F7F8",
+      date: new Date().toString(),
+    },
+  ]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Container className="mt-5">
+        <Row>
+          <Col>
+            <NotesList notes={notes} setNotes={setNotes} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <CreateNotes notes={notes} setNotes={setNotes} />
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 
