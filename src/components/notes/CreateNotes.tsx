@@ -34,6 +34,9 @@ const CreateNotes = () => {
       return errors;
     },
     onSubmit: (values) => {
+      /**
+       * Add unique IDs and timestamps to the note data
+       * */
       const modifiedValues = {
         ...values,
         id: new Date().toString(),
@@ -46,8 +49,11 @@ const CreateNotes = () => {
 
   return (
     <div className="mt-3">
+      {/* Heading */}
       <b>Create Note</b>
+      {/* Form */}
       <Form className="mb-3 mt-3" onSubmit={formik.handleSubmit}>
+        {/* 1.Title */}
         <Form.Group className="mb-3" controlId="formBasicTitle">
           <Form.Label>Title</Form.Label>
           <Form.Control
@@ -62,6 +68,7 @@ const CreateNotes = () => {
             <div className="invalid-feedback">{formik.errors.title}</div>
           )}
         </Form.Group>
+        {/* 2.Text */}
         <Form.Group className="mb-3" controlId="formBasicText">
           <Form.Label>Text</Form.Label>
           <Form.Control
@@ -77,6 +84,7 @@ const CreateNotes = () => {
             <div className="invalid-feedback">{formik.errors.text}</div>
           )}
         </Form.Group>
+        {/* 3.Color */}
         <Form.Group className="mb-3">
           <Form.Label htmlFor="colorInput">Notes color</Form.Label>
           <Form.Control

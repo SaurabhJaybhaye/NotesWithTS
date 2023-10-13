@@ -5,17 +5,30 @@ import Card from "react-bootstrap/Card";
 import { useAppDispatch } from "../../app/hooks";
 import { Note } from "../../models/note.model";
 import { updateNote } from "./noteSlice";
+
+/**
+ *  Defining the Props interface
+ */
 interface Props {
   note: Note;
   handleDelete: (id: string) => void;
 }
 
 const Notes = ({ note, handleDelete }: Props) => {
+  /**
+   * Constants
+   */
   const dispatch = useAppDispatch();
 
+  /**
+   * States
+   */
   const [edit, setEdit] = useState(false);
   const [id, setId] = useState<string>();
 
+  /**
+   * formik
+   */
   const formik = useFormik({
     initialValues: {
       title: note.title,
@@ -49,7 +62,9 @@ const Notes = ({ note, handleDelete }: Props) => {
         <Card.Body>
           {edit && id ? (
             <>
+              {/* Form for editing the note */}
               <Form className="mb-3 mt-3" onSubmit={formik.handleSubmit}>
+                {/* 1.Title */}
                 <Form.Group className="mb-3" controlId="formBasicTitle">
                   <Form.Label>Title</Form.Label>
                   <Form.Control
@@ -66,6 +81,7 @@ const Notes = ({ note, handleDelete }: Props) => {
                     </div>
                   )}
                 </Form.Group>
+                {/* 2.Text */}
                 <Form.Group className="mb-3" controlId="formBasicText">
                   <Form.Label>Text</Form.Label>
                   <Form.Control
@@ -81,6 +97,7 @@ const Notes = ({ note, handleDelete }: Props) => {
                     <div className="invalid-feedback">{formik.errors.text}</div>
                   )}
                 </Form.Group>
+                {/* 3.Color */}
                 <Form.Group className="mb-3">
                   <Form.Label htmlFor="colorInput">Notes color</Form.Label>
                   <Form.Control
@@ -107,11 +124,13 @@ const Notes = ({ note, handleDelete }: Props) => {
             </>
           ) : (
             <>
+              {/* Displaying the note details */}
               <Card.Title>{note.title}</Card.Title>
               <Card.Text>{note.text}</Card.Text>
               <Card.Subtitle className="text-muted">{note.date}</Card.Subtitle>
             </>
           )}
+          {/*  Buttons for updating and deleting the note only show if form is hidden */}
           {edit && id ? (
             <></>
           ) : (

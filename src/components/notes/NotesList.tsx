@@ -1,18 +1,31 @@
-// Importing necessary dependencies and hooks from the app
+/**
+ * Importing necessary dependencies and hooks from the app
+ */
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import Notes from "./Notes";
 import { deleteNote, selectNotes } from "./noteSlice";
 
-// Defining the Props interface (currently empty)
+/**
+ * Defining the Props interface (currently empty)
+ */
 interface Props {}
 
 const NotesList = (props: Props) => {
-  // Using the selectNotes selector to get all notes from the Redux store
+  /**
+   * Constants
+   */
+
+  /**
+   * Using the selectNotes selector to get all notes from the Redux store
+   */
   const allNotes = useAppSelector(selectNotes);
   const notes = allNotes.notes;
   const dispatch = useAppDispatch();
 
-  // Function to handle note deletion
+  /**
+   * Function to handle note deletion
+   * @param noteId string
+   */
   const handleDelete = (noteId: string) => {
     dispatch(deleteNote(noteId));
   };
